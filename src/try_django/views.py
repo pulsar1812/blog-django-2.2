@@ -1,6 +1,6 @@
-"""
-Dummy docstring
-"""
+'''
+Defining views for home, about, and contact pages
+'''
 # from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -9,23 +9,23 @@ from .forms import ContactForm
 
 
 def home_page(request):
-    """Dummy docstring"""
-    my_title = "Welcome to Django Blog"
+    '''Home page view'''
+    my_title = 'Welcome to Django Blog'
     qs = BlogPost.objects.all()[:5]
-    context = {"title": my_title, "blog_list": qs}
-    return render(request, "home.html", context)
+    context = {'title': my_title, 'blog_list': qs}
+    return render(request, 'home.html', context)
 
 
 def about_page(request):
-    """Dummy docstring"""
-    return render(request, "about.html", {"title": "About Us"})
+    '''About page view'''
+    return render(request, 'about.html', {'title': 'About Us'})
 
 
 def contact_page(request):
-    """Dummy docstring"""
+    '''Contact page view'''
     form = ContactForm(request.POST or None)
     if form.is_valid():
         print(form.cleaned_data)
         form = ContactForm()
-    context = {"title": "Contact Us", "form": form}
-    return render(request, "form.html", context)
+    context = {'title': 'Contact Us', 'form': form}
+    return render(request, 'form.html', context)

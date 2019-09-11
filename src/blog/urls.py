@@ -1,6 +1,6 @@
-"""
+'''
 URLs for the blog app
-"""
+'''
 from django.urls import path
 from .views import (
     blog_post_delete_view,
