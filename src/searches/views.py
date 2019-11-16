@@ -1,5 +1,5 @@
 '''
-Defining views for Search
+Defining views for the Search app
 '''
 
 from django.shortcuts import render
