@@ -9,7 +9,6 @@ from .models import SearchQuery
 
 
 def search_view(request):
-    '''Search view'''
     query = request.GET.get('q', None)
     user = None
     if request.user.is_authenticated:

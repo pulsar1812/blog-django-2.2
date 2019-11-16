@@ -7,7 +7,6 @@ from django.db import models
 
 # Create your models here.
 class SearchQuery(models.Model):
-    '''Model for Search'''
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              blank=True,
                              null=True,

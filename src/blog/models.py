@@ -12,7 +12,6 @@ USER = settings.AUTH_USER_MODEL
 
 
 class BlogPostQuerySet(models.QuerySet):
-    '''Defining custom queryset for the BlogPost model'''
     def published(self):
         '''Returns the blog posts that are published'''
         now = timezone.now()
@@ -30,9 +29,7 @@ class BlogPostQuerySet(models.QuerySet):
 
 
 class BlogPostManager(models.Manager):
-    '''Manager class for BlogPost model'''
     def get_queryset(self):
-        '''Returns queryset'''
         return BlogPostQuerySet(self.model, using=self._db)
 
     def published(self):
@@ -47,8 +44,6 @@ class BlogPostManager(models.Manager):
 
 
 class BlogPost(models.Model):
-    '''Defines the BlogPost model'''
-
     user = models.ForeignKey(USER,
                              default=1,
                              null=True,
@@ -70,13 +65,10 @@ class BlogPost(models.Model):
         ordering = ['-publish_date', '-updated', '-timestamp']
 
     def get_absolute_url(self):
-        '''Returns the absolute URL'''
         return f'/blog/{self.slug}'
 
     def get_edit_url(self):
-        '''Returns the URL for edit operation'''
         return f'{self.get_absolute_url()}/edit'
 
     def get_delete_url(self):
-        '''Returns the URL for delete operation'''
         return f'{self.get_absolute_url()}/delete'

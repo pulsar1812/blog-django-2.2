@@ -14,7 +14,6 @@ from .forms import BlogPostModelForm
 
 
 def blog_post_list_view(request):
-    '''List all blog posts'''
     qs = BlogPost.objects.all().published()
     if request.user.is_authenticated:
         my_qs = BlogPost.objects.filter(user=request.user)
@@ -27,7 +26,6 @@ def blog_post_list_view(request):
 # @login_required
 @staff_member_required
 def blog_post_create_view(request):
-    '''Create a blog post'''
     form = BlogPostModelForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         obj = form.save(commit=False)
@@ -40,7 +38,6 @@ def blog_post_create_view(request):
 
 
 def blog_post_detail_view(request, slug):
-    '''Show details of a blog post'''
     obj = get_object_or_404(BlogPost, slug=slug)
     template_name = 'blog/detail.html'
     context = {'object': obj}
@@ -49,7 +46,6 @@ def blog_post_detail_view(request, slug):
 
 @staff_member_required
 def blog_post_update_view(request, slug):
-    '''Update a blog post'''
     obj = get_object_or_404(BlogPost, slug=slug)
     form = BlogPostModelForm(request.POST or None, instance=obj)
     if form.is_valid():
@@ -61,7 +57,6 @@ def blog_post_update_view(request, slug):
 
 @staff_member_required
 def blog_post_delete_view(request, slug):
-    '''Delete a blog post'''
     obj = get_object_or_404(BlogPost, slug=slug)
     template_name = 'blog/delete.html'
     if request.method == 'POST':

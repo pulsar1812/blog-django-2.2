@@ -9,7 +9,6 @@ from .forms import ContactForm
 
 
 def home_page(request):
-    '''Home page view'''
     my_title = 'Welcome to Django Blog'
     qs = BlogPost.objects.all()[:5]
     context = {'title': my_title, 'blog_list': qs}
@@ -17,12 +16,10 @@ def home_page(request):
 
 
 def about_page(request):
-    '''About page view'''
     return render(request, 'about.html', {'title': 'About Us'})
 
 
 def contact_page(request):
-    '''Contact page view'''
     form = ContactForm(request.POST or None)
     if form.is_valid():
         print(form.cleaned_data)
